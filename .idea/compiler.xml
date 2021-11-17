@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="flash-car-api" target="11" />
+      <module name="flash-car-api" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

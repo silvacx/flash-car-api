@@ -1,9 +1,6 @@
 package br.com.flashcarapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "images")
 public class Image {
@@ -12,6 +9,9 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private String imageBase64;
 
     @Deprecated
@@ -35,4 +35,7 @@ public class Image {
         return imageBase64;
     }
 
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
 }

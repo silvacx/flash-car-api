@@ -1,15 +1,20 @@
 package br.com.flashcarapi.dto;
 
 import br.com.flashcarapi.model.Image;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.Base64;
 
 public class ImageDTO {
 
     @NotBlank(message = "is required")
+    @NotNull
     private String description;
 
     @NotBlank(message = "is required")
+    @NotNull
     private String imageBase64;
 
     public ImageDTO(@NotBlank(message = "is required") String description, @NotBlank(message = "is required") String imageBase64) {

@@ -13,9 +13,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Api(value = "API REST Imagens")
+@CrossOrigin
 @RestController
 @RequestMapping("/image")
 public class ImageController {
@@ -27,9 +30,14 @@ public class ImageController {
     @PostMapping
     @Transactional
     public ResponseEntity<?> createImage(@RequestBody @Valid ImageDTO imageDTO) {
-        Image newImage = imageDTO.toModel();
-        entityManager.persist(newImage);
-        return ResponseEntity.status(HttpStatus.OK).body(newImage);
+        try {
+            Image newImage = imageDTO.toModel();
+            entityManager.persist(newImage);
+            return ResponseEntity.status(HttpStatus.OK).body(newImage);
+        }
+        catch(Exception err) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @ApiOperation(value = "Retorna uma lista de imagens")
